@@ -1,0 +1,198 @@
+---
+openapi: 3.0.1
+info:
+  title: Udaconnect Microservices API
+  description: The following endpoints are used in the different microservices for the Udaconnect project.
+  version: "0.1"
+servers:
+- url: http://localhost:30001
+- url: http://localhost:30003
+- url: http://localhost:30002
+paths:
+  /api/persons:
+    get:
+      description: Get persons list
+      responses:
+        "200":
+          description: Auto generated using Swagger Inspector
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: {}
+              examples:
+                "0":
+                  value: |
+                    [{"last_name": "Fargo", "first_name": "Taco", "id": 5, "company_name": "Alpha Omega Upholstery"}, {"last_name": "Shader", "first_name": "Frank", "id": 6, "company_name": "USDA"}, {"last_name": "Trexler", "first_name": "Pam", "id": 1, "company_name": "Hampton, Hampton and McQuill"}, {"last_name": "Badman", "first_name": "Paul", "id": 8, "company_name": "Paul Badman & Associates"}, {"last_name": "Spring", "first_name": "Otto", "id": 9, "company_name": "The Chicken Sisters Restaurant"}, {"last_name": "Mbiye", "first_name": "Joel", "id": 10, "company_name": "HyPerfect SARL"}, {"last_name": "Eponde", "first_name": "Crioni", "id": 11, "company_name": "HyPerfect SARL"}, {"last_name": "Gamero", "first_name": "Michel", "id": 2, "company_name": "Perfect Technologies"}]
+      servers:
+      - url: http://localhost:30001
+    post:
+      description: Add a person
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/api_persons_body'
+            examples:
+              "0":
+                value: |-
+                  {
+                          "last_name": "Lelo",
+                          "first_name": "Teddy",
+                          "company_name": "Aquasplash"
+                      }
+      responses:
+        "200":
+          description: Auto generated using Swagger Inspector
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/inline_response_200'
+              examples:
+                "0":
+                  value: |
+                    {"last_name": "Lelo", "first_name": "Teddy", "id": 3, "company_name": "Aquasplash"}
+      servers:
+      - url: http://localhost:30001
+    servers:
+    - url: http://localhost:30001
+  /api/locations/31:
+    get:
+      description: Get locations
+      responses:
+        "200":
+          description: Auto generated using Swagger Inspector
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/inline_response_200_1'
+              examples:
+                "0":
+                  value: |
+                    {"person_id": 5, "creation_time": "2020-08-15T10:37:06", "id": 31, "latitude": "-122.290524", "longitude": "37.553441"}
+      servers:
+      - url: http://localhost:30003
+    servers:
+    - url: http://localhost:30003
+  /api/locations:
+    post:
+      description: Add location for a specified user
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/api_locations_body'
+            examples:
+              "0":
+                value: |-
+                  {
+                      "person_id": 3,
+                      "creation_time": "2020-04-07T10:38:06",
+                      "latitude": "35.058506",
+                      "longitude": "-106.5722575"
+                  }
+      responses:
+        "200":
+          description: Auto generated using Swagger Inspector
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/inline_response_200_1'
+              examples:
+                "0":
+                  value: |
+                    {"person_id": 3, "creation_time": "2020-04-07T10:38:06", "id": 3, "latitude": "35.0585060000000013", "longitude": "-106.5722575000000063"}
+      servers:
+      - url: http://localhost:30003
+    servers:
+    - url: http://localhost:30003
+  /api/persons/2/connection:
+    get:
+      description: Get connections for a specified user
+      parameters:
+      - name: end_date
+        in: query
+        required: false
+        style: form
+        explode: true
+        schema:
+          type: string
+        example: 2020-12-31
+      - name: distance
+        in: query
+        required: false
+        style: form
+        explode: true
+        schema:
+          type: string
+        example: "5"
+      - name: start_date
+        in: query
+        required: false
+        style: form
+        explode: true
+        schema:
+          type: string
+        example: 2020-01-01
+      responses:
+        "200":
+          description: Auto generated using Swagger Inspector
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: {}
+              examples:
+                "0":
+                  value: |
+                    [{"location": {"id": 29, "person_id": 1, "latitude": "-122.290524", "creation_time": "2020-08-18T10:37:06", "longitude": "37.553441"}, "person": {"id": 1, "last_name": "Trexler", "company_name": "Hampton, Hampton and McQuill", "first_name": "Pam"}}, {"location": {"id": 31, "person_id": 5, "latitude": "-122.290524", "creation_time": "2020-08-15T10:37:06", "longitude": "37.553441"}, "person": {"id": 5, "last_name": "Fargo", "company_name": "Alpha Omega Upholstery", "first_name": "Taco"}}, {"location": {"id": 32, "person_id": 1, "latitude": "-122.290521", "creation_time": "2020-08-15T10:37:06", "longitude": "37.553441"}, "person": {"id": 1, "last_name": "Trexler", "company_name": "Hampton, Hampton and McQuill", "first_name": "Pam"}}, {"location": {"id": 33, "person_id": 1, "latitude": "-122.290521", "creation_time": "2020-08-19T10:37:06", "longitude": "37.553451"}, "person": {"id": 1, "last_name": "Trexler", "company_name": "Hampton, Hampton and McQuill", "first_name": "Pam"}}]
+      servers:
+      - url: http://localhost:30002
+    servers:
+    - url: http://localhost:30002
+components:
+  schemas:
+    api_persons_body:
+      type: object
+      properties:
+        company_name:
+          type: string
+        last_name:
+          type: string
+        first_name:
+          type: string
+    inline_response_200:
+      type: object
+      properties:
+        company_name:
+          type: string
+        last_name:
+          type: string
+        id:
+          type: integer
+        first_name:
+          type: string
+    inline_response_200_1:
+      type: object
+      properties:
+        creation_time:
+          type: string
+        latitude:
+          type: string
+        id:
+          type: integer
+        person_id:
+          type: integer
+        longitude:
+          type: string
+    api_locations_body:
+      type: object
+      properties:
+        creation_time:
+          type: string
+        latitude:
+          type: string
+        person_id:
+          type: integer
+        longitude:
+          type: string

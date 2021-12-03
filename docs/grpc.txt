@@ -1,0 +1,5 @@
+The gRPC server is exposed on port 30051
+From the root folder, cd into modules/gRPC
+Run the command: 
+python writer.py 
+To add a person or add a location for a specified person

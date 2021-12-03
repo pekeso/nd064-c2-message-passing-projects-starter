@@ -1,0 +1,14 @@
+The message passing techniques we will be using:
+   - REST 
+   - gRPC
+   - Kafka
+
+- REST will be used to retrieve data from the database by the Person and Location services as it is a well established technology having wider adoption with a client-server property. 
+	REST resquests have a stateless property thus each request has all the information necessary to process the request.
+
+- gRPC server is deployed as a pod and receives data as protobuf messages to persist them into the database as it's fast by leveraging HTTP/2 for transporting data which is binary data thus making more efficient transfers using protocol buffers for structuring the data being transported. 
+  Also, we don't need to worry about users adopting  gRPC as it is used internally between services
+
+- Kafka has been deployed using bitnami helm chart. Two pods have been deployed: zookeeper and broker. 
+  As there are too many people at large events, the app is expected to ingest plenty of locations, and identify people, which will produce a lot event messages, thus a message queue like Kafka will help in handling the load of messages. 
+  It will help process the message in batches and avoid losing data.
