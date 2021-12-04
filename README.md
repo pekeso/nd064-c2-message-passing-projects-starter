@@ -64,7 +64,7 @@ The following page should now load on the browser:
 * `http://localhost:30000/` - Frontend ReactJS Application
 
 ## Step 7: Test Apache Kafka
-Create a pod to be used as Kafka client
+Create a pod to be used as Kafka client to inject some data (person or location)
 
 ```
 kubectl run kafka-client --restart='Never' --image docker.io/bitnami/kafka:2.8.1-debian-10-r57 --namespace default --command -- sleep infinity
@@ -83,9 +83,12 @@ Inject the json payload in the following format:
 {'first_name':'Joel','last_name':'Mbiye','company_name':'HyPerfect SARL'}
 ```
 
-Refresh the frontend page to see the person added
+Refresh the frontend page to see the person added.
 
-## Step 8: Postman
+## Step 8: gRPC
+Run Python command using the file /modules/grpc/writer.py to add a person or a location to the database.
+
+## Step 9: Postman
 Open Postman and import [`postman.json`](docs/postman.json) collection to test the different API requests.
 
 Notice how the results are being reflected on the frontend app.
