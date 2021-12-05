@@ -141,7 +141,7 @@ server = grpc.server(futures.ThreadPoolExecutor(max_workers=10))
 udaservices_pb2_grpc.add_UdaconnectServiceServicer_to_server(
 	UdaconnectServicer(), server)
 
-# listen on port 5002
+# listen on port 5005
 print('Starting server. Listening on port 5005.')
 server.add_insecure_port('[::]:5005')
 server.start()

@@ -28,11 +28,12 @@ consumer = KafkaConsumer('udaconnecttopic',
      bootstrap_servers=['kafka.default.svc.cluster.local:9092'],
      value_deserializer=lambda m: json.dumps(m.decode('utf-8')))
 
-for message in consumer:
-    response=eval(json.loads((message.value)))
-    if "first_name" in response:
-        create_person(response)
-    elif "person_id" in response:
-        create_location(response)
-    else:
-      print(response)
+while True:
+    for message in consumer:
+        response=eval(json.loads((message.value)))
+        if "first_name" in response:
+            create_person(response)
+        elif "person_id" in response:
+            create_location(response)
+        else:
+            print(response)
